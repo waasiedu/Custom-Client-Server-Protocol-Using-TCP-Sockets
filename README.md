@@ -146,17 +146,6 @@ All communication follows this same pattern.
 
 ---
 
-## What this project is not
-
-- Not a production-ready system
-- Not optimized for high concurrency
-- Not using async or epoll on purpose
-- Not hiding complexity behind frameworks
-
-This project is meant to be small, honest, and educational.
-
----
-
 ## Running the code
 
 Start the server:
@@ -174,4 +163,4 @@ python -m tcp_framed.bench
 
 ByteStream exists to build intuition.
 
-It helped me understand what TCP actually provides — and what it does not — once real data starts flowing across a socket.
+
