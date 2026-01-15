@@ -1,5 +1,5 @@
-# A Small TCP Protocol I Built to Really Understand the Stream
-
+# ByteStream: A Custom Client–Server Protocol Using TCP Sockets
+A Small TCP Protocol I Built to Really Understand the Stream
 I built this project because I kept seeing TCP described as “reliable” and “ordered,” yet every real system still seemed to reinvent its own protocol on top of it.
 
 So this repo is my attempt to answer a simple question:
