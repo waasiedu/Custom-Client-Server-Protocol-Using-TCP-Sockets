@@ -1,27 +1,31 @@
-# Custom Client–Server Protocol Using TCP Sockets
+# A Small TCP Protocol I Built to Really Understand the Stream
 
-A compact but **production-style TCP client–server project** that demonstrates how to build a **custom application-layer protocol** on top of raw TCP sockets.
+I built this project because I kept seeing TCP described as “reliable” and “ordered,” yet every real system still seemed to reinvent its own protocol on top of it.
 
-This project was designed to be:
-- **Resume-aligned** (connection setup, message framing, latency & throughput analysis)
-- **Readable and educational** (clear protocol spec, diagrams, and rationale)
-- **Practical** (handles partial reads, graceful teardown, benchmarking)
+So this repo is my attempt to answer a simple question:
 
-> **Core idea:** TCP is a byte stream, not a message protocol.  
-> This project implements a simple **length-prefixed framing protocol** so application messages are reconstructed correctly.
+> *What does it actually take to build a clean, predictable application protocol on top of raw TCP sockets?*
 
----
+The answer turned out to be: **message framing, careful reads, and a lot of respect for the fact that TCP is just a byte stream.**
 
-## What this project demonstrates
-
-- TCP socket programming (`bind`, `listen`, `accept`, `connect`, timeouts, teardown)
-- Application-layer **message framing**
-- Client–server request/response design
-- Latency (RTT) and throughput benchmarking under varying payload sizes
-- Defensive networking practices (partial reads, max frame size guards)
+This project is intentionally small, readable, and hands-on.
 
 ---
 
+## What this project does
 
+- Implements a **length-prefixed framing protocol** on top of TCP
+- Handles **partial reads** correctly (no assumptions about `recv()` boundaries)
+- Supports a few simple message types (text, ping/pong, bulk data)
+- Includes a lightweight **latency and throughput benchmark**
+- Logs everything clearly so you can see what’s happening on the wire
 
+There’s no framework, no magic — just sockets and discipline.
 
+---
+
+## Why framing exists (the short version)
+
+TCP does **not** preserve message boundaries.
+
+If you send:
